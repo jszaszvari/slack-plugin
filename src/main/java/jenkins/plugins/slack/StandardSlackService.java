@@ -37,13 +37,15 @@ public class StandardSlackService implements SlackService {
     private String token;
     private String authTokenCredentialId;
     private String[] roomIds;
+    private String apiToken;
 
-    public StandardSlackService(String teamDomain, String token, String authTokenCredentialId, String roomId) {
+    public StandardSlackService(String teamDomain, String token, String authTokenCredentialId, String roomId, String apiToken) {
         super();
         this.teamDomain = teamDomain;
         this.token = token;
         this.authTokenCredentialId = StringUtils.trim(authTokenCredentialId);
         this.roomIds = roomId.split("[,; ]+");
+        this.apiToken = apiToken;
     }
 
     public boolean publish(String message) {
