@@ -106,6 +106,10 @@ public class StandardSlackService implements SlackService {
         return result;
     }
 
+    public String getUserId(String email) {
+        return "";
+    }
+
     private String getTokenToUse() {
         if (authTokenCredentialId != null && !authTokenCredentialId.isEmpty()) {
             StringCredentials credentials = lookupCredentials(authTokenCredentialId);
@@ -141,7 +145,7 @@ public class StandardSlackService implements SlackService {
                     // and
                     // http://svn.apache.org/viewvc/httpcomponents/oac.hc3x/trunk/src/examples/BasicAuthenticationExample.java?view=markup
                     client.getState().setProxyCredentials(AuthScope.ANY,
-                        new UsernamePasswordCredentials(username, password));
+                            new UsernamePasswordCredentials(username, password));
                 }
             }
         }
