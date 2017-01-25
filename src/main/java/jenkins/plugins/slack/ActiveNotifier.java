@@ -98,10 +98,22 @@ public class ActiveNotifier implements FineGrainedNotifier {
         Result previousResult = (previousBuild != null) ? previousBuild.getResult() : Result.SUCCESS;
 
         AbstractBuild<?, ?> oldBuild = project.getLastBuild();
-        do {
-            oldBuild = oldBuild.getPreviousCompletedBuild();
-        } while (oldBuild != null && oldBuild.getResult() == Result.ABORTED && oldBuild != previousBuild);
-        Result oldResult = (oldBuild != null) ? oldBuild.getResult() : Result.SUCCESS;
+
+        try {
+            Integer.parseInt(notifier.getNumberOfFailuresAfterToNotify());
+        } catch (Exception e) {
+            System.err.println("Must be a number");
+        }
+
+        int N = Integer.parseInt(notifier.getNumberOfFailuresAfterToNotify());
+        int count = 0;
+        for (int i=0; i<N; i++) {
+            if (oldBuild.getPreviousCompletedBuild() != null && oldBuild.getResult() == Result.ABORTED) {
+                count++;
+                oldBuild = oldBuild.getPreviousCompletedBuild();
+            }
+
+        }
 
         if ((result == Result.ABORTED && notifier.getNotifyAborted())
                 || (result == Result.FAILURE //notify only on single failed build
@@ -110,10 +122,9 @@ public class ActiveNotifier implements FineGrainedNotifier {
                 || (result == Result.FAILURE //notify only on repeated failures
                     && previousResult == Result.FAILURE
                     && notifier.getNotifyRepeatedFailure())
-                || (result == Result.FAILURE //notify only after 3 repeated failures
-                    && previousResult == Result.FAILURE
-                    && oldResult == Result.FAILURE
-                    && notifier.getNotifyFailureAfter3times())
+                || (result == Result.FAILURE //notify only after N repeated failures
+                    && count == N
+                    && notifier.getNotifyFailureAfterNTimess())
                 || (result == Result.NOT_BUILT && notifier.getNotifyNotBuilt())
                 || (result == Result.SUCCESS
                     && (previousResult == Result.FAILURE || previousResult == Result.UNSTABLE)
