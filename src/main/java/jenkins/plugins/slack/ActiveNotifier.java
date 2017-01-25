@@ -97,11 +97,11 @@ public class ActiveNotifier implements FineGrainedNotifier {
         } while (previousBuild != null && previousBuild.getResult() == Result.ABORTED);
         Result previousResult = (previousBuild != null) ? previousBuild.getResult() : Result.SUCCESS;
 
-        AbstractBuild<?, ?> previousPreviousBuild = project.getLastBuild();
+        AbstractBuild<?, ?> oldBuild = project.getLastBuild();
         do {
-            previousPreviousBuild = previousBuild.getPreviousCompletedBuild();
-        } while (previousBuild != null && previousBuild.getResult() == Result.ABORTED && previousPreviousBuild != previousBuild);
-        Result previousPreviousResult = (previousPreviousBuild != null) ? previousPreviousBuild.getResult() : Result.SUCCESS;
+            oldBuild = oldBuild.getPreviousCompletedBuild();
+        } while (oldBuild != null && oldBuild.getResult() == Result.ABORTED && oldBuild != previousBuild);
+        Result oldResult = (oldBuild != null) ? oldBuild.getResult() : Result.SUCCESS;
 
         if ((result == Result.ABORTED && notifier.getNotifyAborted())
                 || (result == Result.FAILURE //notify only on single failed build
@@ -109,10 +109,10 @@ public class ActiveNotifier implements FineGrainedNotifier {
                     && notifier.getNotifyFailure())
                 || (result == Result.FAILURE //notify only on repeated failures
                     && previousResult == Result.FAILURE
-                    && notifier.getNotifyRepeatedFailure()) //notify only after 3 repeated failures
-                || (result == Result.FAILURE
+                    && notifier.getNotifyRepeatedFailure())
+                || (result == Result.FAILURE //notify only after 3 repeated failures
                     && previousResult == Result.FAILURE
-                    && previousPreviousResult == Result.FAILURE
+                    && oldResult == Result.FAILURE
                     && notifier.getNotifyFailureAfter3times())
                 || (result == Result.NOT_BUILT && notifier.getNotifyNotBuilt())
                 || (result == Result.SUCCESS
