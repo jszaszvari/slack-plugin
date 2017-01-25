@@ -18,19 +18,18 @@ import hudson.triggers.SCMTrigger;
 import hudson.util.LogTaskListener;
 import org.apache.commons.lang.StringUtils;
 import org.jenkinsci.plugins.displayurlapi.DisplayURLProvider;
-import jenkins.model.lazy.AbstractLazyLoadRunMap;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Level.SEVERE;
-import static jenkins.model.lazy.AbstractLazyLoadRunMap.Direction.DESC;
 
 @SuppressWarnings("rawtypes")
-
 public class ActiveNotifier implements FineGrainedNotifier {
 
     private static final Logger logger = Logger.getLogger(SlackListener.class.getName());
