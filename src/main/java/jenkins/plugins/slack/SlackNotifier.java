@@ -51,12 +51,20 @@ public class SlackNotifier extends Notifier {
     private boolean notifyFailure;
     private boolean notifyBackToNormal;
     private boolean notifyRepeatedFailure;
-    public String numberOfFailuresAfterToNotify;
+    public int numberOfFailuresAfterToNotify;
     private boolean notifyFailureAfterNTimess;
     private boolean includeTestSummary;
     private CommitInfoChoice commitInfoChoice;
     private boolean includeCustomMessage;
     private String customMessage;
+
+    private static String intToString(int i) {
+        if (i == -1) {
+            return ""; //$NON-NLS-1$
+        } else {
+            return Integer.toString(i);
+        }
+    }
 
     @Override
     public DescriptorImpl getDescriptor() {
@@ -123,7 +131,7 @@ public class SlackNotifier extends Notifier {
         return notifyRepeatedFailure;
     }
 
-    public String getNumberOfFailuresAfterToNotify() {
+    public int getNumberOfFailuresAfterToNotify() {
         return numberOfFailuresAfterToNotify;
     }
 
@@ -143,7 +151,7 @@ public class SlackNotifier extends Notifier {
     public SlackNotifier(final String teamDomain, final String authToken, final String room, final String authTokenCredentialId,
                          final String sendAs, final boolean startNotification, final boolean notifyAborted, final boolean notifyFailure,
                          final boolean notifyNotBuilt, final boolean notifySuccess, final boolean notifyUnstable, final boolean notifyBackToNormal,
-                         final boolean notifyRepeatedFailure, final String numberOfFailuresAfterToNotify, final boolean notifyFailureAfterNTimess,
+                         final boolean notifyRepeatedFailure, final int numberOfFailuresAfterToNotify, final boolean notifyFailureAfterNTimess,
                          final boolean includeTestSummary, CommitInfoChoice commitInfoChoice, boolean includeCustomMessage,
                          String customMessage) {
         super();
@@ -299,7 +307,7 @@ public class SlackNotifier extends Notifier {
             boolean notifyFailure = "true".equals(sr.getParameter("slackNotifyFailure"));
             boolean notifyBackToNormal = "true".equals(sr.getParameter("slackNotifyBackToNormal"));
             boolean notifyRepeatedFailure = "true".equals(sr.getParameter("slackNotifyRepeatedFailure"));
-            String numberOfFailuresAfterToNotify = sr.getParameter("numberOfFailuresAfterToNotify");
+            int numberOfFailuresAfterToNotify = Integer.parseInt(sr.getParameter("numberOfFailuresAfterToNotify"));
             boolean notifyFailureAfterNTimess = "true".equals(sr.getParameter("slacknotifyFailureAfterNTimess"));
             boolean includeTestSummary = "true".equals(sr.getParameter("includeTestSummary"));
             CommitInfoChoice commitInfoChoice = CommitInfoChoice.forDisplayName(sr.getParameter("slackCommitInfoChoice"));
@@ -376,7 +384,7 @@ public class SlackNotifier extends Notifier {
         private boolean notifyFailure;
         private boolean notifyBackToNormal;
         private boolean notifyRepeatedFailure;
-        private String numberOfFailuresAfterToNotify;
+        private int numberOfFailuresAfterToNotify;
         private boolean notifyFailureAfterNTimess;
         private boolean includeTestSummary;
         private boolean showCommitList;
@@ -395,7 +403,7 @@ public class SlackNotifier extends Notifier {
                                 boolean notifyUnstable,
                                 boolean notifyBackToNormal,
                                 boolean notifyRepeatedFailure,
-                                String numberOfFailuresAfterToNotify,
+                                int numberOfFailuresAfterToNotify,
                                 boolean notifyFailureAfterNTimess,
                                 boolean includeTestSummary,
                                 boolean showCommitList,
@@ -491,7 +499,7 @@ public class SlackNotifier extends Notifier {
         }
 
         @Exported
-        public String getNumberOfFailuresAfterToNotify() {
+        public int getNumberOfFailuresAfterToNotify() {
             return numberOfFailuresAfterToNotify;
         }
 

@@ -99,13 +99,7 @@ public class ActiveNotifier implements FineGrainedNotifier {
 
         AbstractBuild<?, ?> oldBuild = project.getLastBuild();
 
-        try {
-            Integer.parseInt(notifier.getNumberOfFailuresAfterToNotify());
-        } catch (Exception e) {
-            System.err.println("Must be a number");
-        }
-
-        int N = Integer.parseInt(notifier.getNumberOfFailuresAfterToNotify());
+        int N = notifier.getNumberOfFailuresAfterToNotify();
         int count = 0;
         for (int i=0; i<N; i++) {
             if (oldBuild.getPreviousCompletedBuild() != null && oldBuild.getResult() == Result.ABORTED) {
