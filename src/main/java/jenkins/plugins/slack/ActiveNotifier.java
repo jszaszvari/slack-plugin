@@ -96,6 +96,7 @@ public class ActiveNotifier implements FineGrainedNotifier {
         AbstractProject<?, ?> project = r.getProject();
         Result result = r.getResult();
         AbstractBuild<?, ?> previousBuild = project.getLastBuild();
+
         do {
             previousBuild = previousBuild.getPreviousCompletedBuild();
         } while (previousBuild != null && previousBuild.getResult() == Result.ABORTED);
@@ -106,11 +107,10 @@ public class ActiveNotifier implements FineGrainedNotifier {
         int N = notifier.getFailureNotificationThreshold();
         int count = 0;
         for (int i=0; i<N; i++) {
-            if (oldBuild.getPreviousCompletedBuild() != null && oldBuild.getResult() == Result.ABORTED) {
+            if (oldBuild != null && oldBuild.getResult() == Result.FAILURE) {
                 count++;
                 oldBuild = oldBuild.getPreviousCompletedBuild();
             }
-
         }
 
         if ((result == Result.ABORTED && notifier.getNotifyAborted())
@@ -121,7 +121,7 @@ public class ActiveNotifier implements FineGrainedNotifier {
                     && previousResult == Result.FAILURE
                     && notifier.getNotifyRepeatedFailure())
                 || (result == Result.FAILURE //notify only after N repeated failures
-                    && count == N-1
+                    && count >= N
                     && notifier.getNotifyFailureAfterNTimes())
                 || (result == Result.NOT_BUILT && notifier.getNotifyNotBuilt())
                 || (result == Result.SUCCESS

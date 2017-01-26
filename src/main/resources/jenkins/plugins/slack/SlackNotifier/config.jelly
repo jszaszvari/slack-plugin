@@ -35,8 +35,8 @@
         </f:entry>
 
         <f:optionalBlock name="slackNotifyFailureAfterNTimes" title="Notify after N Failures" checked="${instance.getNotifyFailureAfterNTimes()}">
-            <f:entry title="Put in number of failures" field="failureNotificationThreshold">
-                <f:textarea name="failureNotificationThreshold" value="${instance.getFailureNotificationThreshold()}" />
+            <f:entry title="Put in number of failures" field="failureNotificationThreshold" name="failureNotificationThreshold" value="${instance.getFailureNotificationThreshold()}">
+                <f:textarea />
             </f:entry>
         </f:optionalBlock>
 

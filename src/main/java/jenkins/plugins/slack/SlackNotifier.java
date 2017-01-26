@@ -382,8 +382,8 @@ public class SlackNotifier extends Notifier {
             boolean notifyFailure = "true".equals(sr.getParameter("slackNotifyFailure"));
             boolean notifyBackToNormal = "true".equals(sr.getParameter("slackNotifyBackToNormal"));
             boolean notifyRepeatedFailure = "true".equals(sr.getParameter("slackNotifyRepeatedFailure"));
-            int failureNotificationThreshold = Integer.parseInt(sr.getParameter("failureNotificationThreshold"));
-            boolean notifyFailureAfterNTimes = "on".equals(sr.getParameter("slacknotifyFailureAfterNTimes"));
+            int failureNotificationThreshold = 3;
+            boolean notifyFailureAfterNTimes = true;
             boolean includeTestSummary = "true".equals(sr.getParameter("includeTestSummary"));
             CommitInfoChoice commitInfoChoice = CommitInfoChoice.forDisplayName(sr.getParameter("slackCommitInfoChoice"));
             boolean includeCustomMessage = "on".equals(sr.getParameter("includeCustomMessage"));
