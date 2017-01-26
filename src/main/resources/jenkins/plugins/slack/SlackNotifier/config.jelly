@@ -33,9 +33,10 @@
             <f:checkbox name="slackNotifyRepeatedFailure" value="true"
                         checked="${instance.getNotifyRepeatedFailure()}"/>
         </f:entry>
-        <f:optionalBlock title="Notify after N Failures" name="slackNotifyFailureAfterNTimess"> checked="${instance.getNotifyFailureAfterNTimes()}">
-            <f:entry title="Put in number of failures" field="numberOfFailuresAfterToNotify">
-                <f:textarea name="numberOfFailuresAfterToNotify" value="${instance.getNumberOfFailuresAfterToNotify()}" />
+
+        <f:optionalBlock name="slackNotifyFailureAfterNTimes" title="Notify after N Failures" checked="${instance.getNotifyFailureAfterNTimes()}">
+            <f:entry title="Put in number of failures" field="failureNotificationThreshold">
+                <f:textarea name="failureNotificationThreshold" value="${instance.getFailureNotificationThreshold()}" />
             </f:entry>
         </f:optionalBlock>
 

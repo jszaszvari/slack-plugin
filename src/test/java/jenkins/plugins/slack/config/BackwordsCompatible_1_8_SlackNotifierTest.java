@@ -53,7 +53,7 @@ public class BackwordsCompatible_1_8_SlackNotifierTest {
         assertTrue(notifier.getNotifyFailure());
         assertFalse(notifier.getNotifyBackToNormal());
         assertFalse(notifier.getNotifyRepeatedFailure());
-        assertEquals(0, notifier.getNumberOfFailuresAfterToNotify());
+        assertEquals(0, notifier.getFailureNotificationThreshold());
         assertFalse(notifier.getNotifyFailureAfterNTimes());
         assertFalse(notifier.includeTestSummary());
         assertEquals(CommitInfoChoice.NONE, notifier.getCommitInfoChoice());
@@ -82,7 +82,7 @@ public class BackwordsCompatible_1_8_SlackNotifierTest {
         assertTrue(notifier.getNotifyFailure());
         assertFalse(notifier.getNotifyBackToNormal());
         assertFalse(notifier.getNotifyRepeatedFailure());
-        assertEquals(0, notifier.getNumberOfFailuresAfterToNotify());
+        assertEquals(0, notifier.getFailureNotificationThreshold());
         assertFalse(notifier.getNotifyFailureAfterNTimes());
         assertFalse(notifier.includeTestSummary());
         assertEquals(CommitInfoChoice.NONE, notifier.getCommitInfoChoice());
@@ -111,7 +111,7 @@ public class BackwordsCompatible_1_8_SlackNotifierTest {
         assertTrue(notifier.getNotifyFailure());
         assertFalse(notifier.getNotifyBackToNormal());
         assertFalse(notifier.getNotifyRepeatedFailure());
-        assertEquals(0, notifier.getNumberOfFailuresAfterToNotify());
+        assertEquals(0, notifier.getFailureNotificationThreshold());
         assertFalse(notifier.getNotifyFailureAfterNTimes());
         assertFalse(notifier.includeTestSummary());
         assertEquals(CommitInfoChoice.NONE, notifier.getCommitInfoChoice());
@@ -167,7 +167,7 @@ public class BackwordsCompatible_1_8_SlackNotifierTest {
         assertTrue(notifier.getNotifyUnstable());
         assertTrue(notifier.getNotifyFailure());
         assertTrue(notifier.getNotifyBackToNormal());
-        assertEquals(3, notifier.getNumberOfFailuresAfterToNotify());
+        assertEquals(3, notifier.getFailureNotificationThreshold());
         assertTrue(notifier.getNotifyRepeatedFailure());
         assertTrue(notifier.getNotifyFailureAfterNTimes());
         assertTrue(notifier.includeTestSummary());
