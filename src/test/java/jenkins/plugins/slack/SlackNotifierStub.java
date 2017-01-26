@@ -7,7 +7,7 @@ public class SlackNotifierStub extends SlackNotifier {
                              boolean notifyNotBuilt, boolean notifySuccess, boolean notifyUnstable, boolean notifyBackToNormal,
                              boolean notifyRepeatedFailure, int numberOfFailuresAfterToNotify, boolean notifyFailureAfterNTimess, boolean includeTestSummary, CommitInfoChoice commitInfoChoice,
                              boolean includeCustomMessage, String customMessage) {
-        super(teamDomain, authToken, authTokenCredentialId, room, sendAs, startNotification, notifyAborted, notifyFailure,
+        super(teamDomain, authToken, botUser, authTokenCredentialId, room, sendAs, startNotification, notifyAborted, notifyFailure,
                 notifyNotBuilt, notifySuccess, notifyUnstable, notifyBackToNormal, notifyRepeatedFailure, numberOfFailuresAfterToNotify,
                 notifyFailureAfterNTimess, includeTestSummary, commitInfoChoice, includeCustomMessage, customMessage);
     }

@@ -54,7 +54,7 @@ public class BackwordsCompatible_1_8_SlackNotifierTest {
         assertFalse(notifier.getNotifyBackToNormal());
         assertFalse(notifier.getNotifyRepeatedFailure());
         assertEquals(0, notifier.getNumberOfFailuresAfterToNotify());
-        assertFalse(notifier.getNotifyFailureAfterNTimess());
+        assertFalse(notifier.getNotifyFailureAfterNTimes());
         assertFalse(notifier.includeTestSummary());
         assertEquals(CommitInfoChoice.NONE, notifier.getCommitInfoChoice());
         assertFalse(notifier.includeCustomMessage());
@@ -83,7 +83,7 @@ public class BackwordsCompatible_1_8_SlackNotifierTest {
         assertFalse(notifier.getNotifyBackToNormal());
         assertFalse(notifier.getNotifyRepeatedFailure());
         assertEquals(0, notifier.getNumberOfFailuresAfterToNotify());
-        assertFalse(notifier.getNotifyFailureAfterNTimess());
+        assertFalse(notifier.getNotifyFailureAfterNTimes());
         assertFalse(notifier.includeTestSummary());
         assertEquals(CommitInfoChoice.NONE, notifier.getCommitInfoChoice());
         assertFalse(notifier.includeCustomMessage());
@@ -112,7 +112,7 @@ public class BackwordsCompatible_1_8_SlackNotifierTest {
         assertFalse(notifier.getNotifyBackToNormal());
         assertFalse(notifier.getNotifyRepeatedFailure());
         assertEquals(0, notifier.getNumberOfFailuresAfterToNotify());
-        assertFalse(notifier.getNotifyFailureAfterNTimess());
+        assertFalse(notifier.getNotifyFailureAfterNTimes());
         assertFalse(notifier.includeTestSummary());
         assertEquals(CommitInfoChoice.NONE, notifier.getCommitInfoChoice());
         assertFalse(notifier.includeCustomMessage());
@@ -169,7 +169,7 @@ public class BackwordsCompatible_1_8_SlackNotifierTest {
         assertTrue(notifier.getNotifyBackToNormal());
         assertEquals(3, notifier.getNumberOfFailuresAfterToNotify());
         assertTrue(notifier.getNotifyRepeatedFailure());
-        assertTrue(notifier.getNotifyFailureAfterNTimess());
+        assertTrue(notifier.getNotifyFailureAfterNTimes());
         assertTrue(notifier.includeTestSummary());
         assertEquals(CommitInfoChoice.AUTHORS_AND_TITLES, notifier.getCommitInfoChoice());
         assertTrue(notifier.includeCustomMessage());

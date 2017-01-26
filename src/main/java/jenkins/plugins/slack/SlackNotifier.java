@@ -54,7 +54,7 @@ public class SlackNotifier extends Notifier {
     private boolean notifyFailure;
     private boolean notifyBackToNormal;
     private boolean notifyRepeatedFailure;
-    public int numberOfFailuresAfterToNotify;
+    private int numberOfFailuresAfterToNotify;
     private boolean notifyFailureAfterNTimess;
     private boolean includeTestSummary;
     private CommitInfoChoice commitInfoChoice;
@@ -154,7 +154,7 @@ public class SlackNotifier extends Notifier {
         return numberOfFailuresAfterToNotify;
     }
 
-    public boolean getNotifyFailureAfterNTimess() {
+    public boolean getNotifyFailureAfterNTimes() {
         return notifyFailureAfterNTimess;
     }
 
@@ -204,6 +204,14 @@ public class SlackNotifier extends Notifier {
 
     public void setNotifyRepeatedFailure(boolean notifyRepeatedFailure) {
         this.notifyRepeatedFailure = notifyRepeatedFailure;
+    }
+
+    public void setNumberOfFailuresAfterToNotify(int numberOfFailuresAfterToNotify) {
+        this.numberOfFailuresAfterToNotify = numberOfFailuresAfterToNotify;
+    }
+
+    public void setNotifyFailureAfterNTimess(boolean notifyFailureAfterNTimess) {
+        this.notifyFailureAfterNTimess = notifyFailureAfterNTimess;
     }
 
     public void setIncludeCustomMessage(boolean includeCustomMessage) {
@@ -591,7 +599,7 @@ public class SlackNotifier extends Notifier {
         }
 
         @Exported
-        public boolean getNotifyFailureAfterNTimess() {
+        public boolean getNotifyFailureAfterNTimes() {
             return notifyFailureAfterNTimess;
         }
 

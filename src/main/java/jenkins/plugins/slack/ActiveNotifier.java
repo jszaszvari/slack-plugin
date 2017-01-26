@@ -122,7 +122,7 @@ public class ActiveNotifier implements FineGrainedNotifier {
                     && notifier.getNotifyRepeatedFailure())
                 || (result == Result.FAILURE //notify only after N repeated failures
                     && count == N
-                    && notifier.getNotifyFailureAfterNTimess())
+                    && notifier.getNotifyFailureAfterNTimes())
                 || (result == Result.NOT_BUILT && notifier.getNotifyNotBuilt())
                 || (result == Result.SUCCESS
                     && (previousResult == Result.FAILURE || previousResult == Result.UNSTABLE)
