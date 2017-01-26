@@ -2,7 +2,7 @@ package jenkins.plugins.slack;
 
 public class SlackNotifierStub extends SlackNotifier {
 
-    public SlackNotifierStub(String teamDomain, String authToken, String authTokenCredentialId, String room,
+    public SlackNotifierStub(String teamDomain, String authToken, boolean botUser, String room, String authTokenCredentialId,
                              String sendAs, boolean startNotification, boolean notifyAborted, boolean notifyFailure,
                              boolean notifyNotBuilt, boolean notifySuccess, boolean notifyUnstable, boolean notifyBackToNormal,
                              boolean notifyRepeatedFailure, int numberOfFailuresAfterToNotify, boolean notifyFailureAfterNTimess, boolean includeTestSummary, CommitInfoChoice commitInfoChoice,
@@ -21,7 +21,7 @@ public class SlackNotifierStub extends SlackNotifier {
         }
 
         @Override
-        SlackService getSlackService(final String teamDomain, final String authToken, final String authTokenCredentialId, final String room) {
+        SlackService getSlackService(final String teamDomain, final String authToken, final String authTokenCredentialId, final boolean botUser, final String room) {
             return slackService;
         }
 
