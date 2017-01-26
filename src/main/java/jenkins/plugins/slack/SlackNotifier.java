@@ -35,6 +35,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import static com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials;
+import static java.lang.Integer.valueOf;
 
 public class SlackNotifier extends Notifier {
 
@@ -382,8 +383,14 @@ public class SlackNotifier extends Notifier {
             boolean notifyFailure = "true".equals(sr.getParameter("slackNotifyFailure"));
             boolean notifyBackToNormal = "true".equals(sr.getParameter("slackNotifyBackToNormal"));
             boolean notifyRepeatedFailure = "true".equals(sr.getParameter("slackNotifyRepeatedFailure"));
-            int failureNotificationThreshold = 3;
-            boolean notifyFailureAfterNTimes = true;
+            int failureNotificationThreshold;
+            try {
+                failureNotificationThreshold = Integer.parseInt(sr.getParameter("failureNotificationThreshold"));
+            } catch(NumberFormatException e) {
+                failureNotificationThreshold = 0;
+            }
+
+            boolean notifyFailureAfterNTimes = "true".equals(sr.getParameter("slackNotifyFailureAfterNTimes"));
             boolean includeTestSummary = "true".equals(sr.getParameter("includeTestSummary"));
             CommitInfoChoice commitInfoChoice = CommitInfoChoice.forDisplayName(sr.getParameter("slackCommitInfoChoice"));
             boolean includeCustomMessage = "on".equals(sr.getParameter("includeCustomMessage"));
