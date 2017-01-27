@@ -385,7 +385,7 @@ public class SlackNotifier extends Notifier {
             boolean notifyRepeatedFailure = "true".equals(sr.getParameter("slackNotifyRepeatedFailure"));
             int failureNotificationThreshold;
             try {
-                failureNotificationThreshold = Integer.parseInt(sr.getParameter("failureNotificationThreshold"));
+                failureNotificationThreshold = Integer.parseInt(sr.getParameter("slackFailureNotificationThreshold"));
             } catch(NumberFormatException e) {
                 failureNotificationThreshold = 0;
             }

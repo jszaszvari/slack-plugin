@@ -34,13 +34,16 @@
                         checked="${instance.getNotifyRepeatedFailure()}"/>
         </f:entry>
 
-        <f:entry title="Notify after N Failures">
+        <f:entry title="Notify after N Failures" field="failureNotificationThreshold">
             <f:checkbox name="slackNotifyFailureAfterNTimes" value="true"
                         checked="${instance.getNotifyFailureAfterNTimes()}"/>
-        </f:entry>
-
-        <f:entry name="failureNotificationThreshold" title="Put in number of failures" field="failureNotificationThreshold">
-          <f:textbox />
+            <select name="slackFailureNotificationThreshold">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="3">4</option>
+                <option value="5">5</option>
+            </select>
         </f:entry>
 
         <f:entry title="Include Test Summary">
